@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Menu } from './Menu';
-import { Users } from './Users';
+import Users from './Users';
 
 const Tasks = () => <div>Tasks</div>;
 
