@@ -7,6 +7,7 @@ import * as usersActions from '../../actions/usersActions';
 
 class Users extends Component {
 
+  // Comment constructor because we started using Store from Redux as Global State.
   // constructor(){
   //   super()
   //   this.state = {
@@ -49,9 +50,11 @@ class Users extends Component {
   };
 };
 
+
 const mapStateToProps = (reducers) =>{
   return reducers.usersReducer
 };
 
 // export default connect(/* All reducers by Provider show to user */, {/*Actions  */})(Users);
 export default connect( mapStateToProps, usersActions )(Users);
+
