@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import {  connect } from 'react-redux';
 
+// 7 import
+import { connect } from 'react-redux';
+// 8 import
 import * as usersActions from '../../actions/usersActions';
 
 class Users extends Component {
@@ -14,7 +16,7 @@ class Users extends Component {
   // }
 
   componentDidMount(){
-    this.props.getAllUsers()
+    this.props.getAllUsers();
   };
 
   putRows = () => (
@@ -28,6 +30,7 @@ class Users extends Component {
   )
 
   render(){
+    console.log(this.props);
     return (
       <div className="margin">
         <table className="table">
@@ -47,8 +50,11 @@ class Users extends Component {
   };
 };
 
-const mapStateToProps = (reducers) => {
-  return reducers.usersReducer;
+
+const mapStateToProps = (reducers) =>{
+  return reducers.usersReducer
 };
 
-export default connect(mapStateToProps, usersActions)(Users);
+// export default connect(/* All reducers by Provider show to user */, {/*Actions  */})(Users);
+export default connect( mapStateToProps, usersActions )(Users);
+

@@ -3,22 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import {App} from './components/App';
 
-// Redux initial implementation
-import { legacy_createStore as createStore , applyMiddleware} from 'redux'
+// 1 imports needs
+import { legacy_createStore as createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+//4. import reducers
+import reducers from './reducers';
+// import redux-thunk
 import reduxThunk from 'redux-thunk';
 
-import reducers from './reducers';
-
+// 2. Create a Stor to provider all App
 const store = createStore(
-    reducers, // reducers
-    {}, // initialState
-    applyMiddleware(reduxThunk),
-)
+  reducers, // All reducers from the App
+  {}, // initial State
+  applyMiddleware(reduxThunk)
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render( 
-    <Provider store={ store }>
-        <App /> 
-    </Provider>
+  <Provider store={ store }>
+    <App /> 
+  </Provider>
 );
