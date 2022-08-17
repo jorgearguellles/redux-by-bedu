@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { LoadingSpinner } from "../Spinner";
+import { Fatal } from '../Fatal';
 
 // 7 import
 import { connect } from 'react-redux';
@@ -13,6 +14,11 @@ class Users extends Component {
   };
 
   renderContent = () => {
+
+    if(this.props.error){
+      return <Fatal message={this.props.error}/>
+    }
+
     return(
       <table className="table">
           <thead>
