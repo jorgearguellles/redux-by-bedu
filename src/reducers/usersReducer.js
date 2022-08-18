@@ -15,5 +15,5 @@ export default ( state = INITIAL_STATE, action ) => {
         case ERROR:
             return { ...state, error: action.payload, loading: false }
         default: return state;
-    }
+    };
 };

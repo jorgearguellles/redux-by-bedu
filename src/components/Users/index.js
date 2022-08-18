@@ -37,9 +37,11 @@ class Users extends Component {
   };
 };
 
+
 const mapStateToProps = (reducers) =>{
   return reducers.usersReducer
 };
 
 // export default connect(/* All reducers by Provider show to user */, {/*Actions  */})(Users);
 export default connect( mapStateToProps, usersActions )(Users);
+
