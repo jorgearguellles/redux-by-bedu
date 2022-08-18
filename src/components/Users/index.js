@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { LoadingSpinner } from "../Spinner";
+import { Fatal } from '../Fatal';
+import Table from "./Table";
 
 // 7 import
 import { connect } from 'react-redux';
@@ -7,44 +10,28 @@ import * as usersActions from '../../actions/usersActions';
 
 class Users extends Component {
 
-  // Comment constructor because we started using Store from Redux as Global State.
-  // constructor(){
-  //   super()
-  //   this.state = {
-  //     users: []
-  //   }
-  // }
-
   componentDidMount(){
     this.props.getAllUsers();
   };
 
-  putRows = () => (
-    this.props.users.map( user => (
-        <tr key={user.id}>
-          <td>{user.name}</td>
-          <td>{user.email}</td>
-          <td>{user.website}</td>
-        </tr>      
-    ))
-  )
+  renderContent = () => {
+
+    if(this.props.loading){
+      return <LoadingSpinner/>
+    }
+
+    if(this.props.error){
+      return <Fatal message={this.props.error}/>
+    }
+
+    return <Table />
+  };
 
   render(){
-    console.log(this.props);
     return (
       <div className="margin">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.putRows()}
-          </tbody>
-        </table>
+        <h1>Users</h1>
+        {this.renderContent()}
       </div>
     );
   };
