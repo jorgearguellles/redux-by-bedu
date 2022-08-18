@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { Component } from "react";
 import { connect } from 'react-redux';
 import * as usersActions from '../../actions/usersActions';
+import * as publicationsActions from '../../actions/publicationsActions';
 
 function withParams(Component) {
 	return props => <Component {...props} params={useParams()} />;
@@ -10,10 +11,11 @@ function withParams(Component) {
 class Publications extends Component {
 
   componentDidMount(){
-    if(!this.props.users.length){
+    if(!this.props.usersReducer.users.length){
       this.props.getAllUsers();
-    }
-  }
+    };
+    this.props.getPublications();
+  };
 
 	render() {			
     console.log(this.props)
@@ -23,11 +25,21 @@ class Publications extends Component {
 				{this.props.params.key}               
 			</div>
 		);
-	}
+	};
 };
 
 const mapStateToProps = (reducers) => {
-  return reducers.usersReducer;
+  const {usersReducer, publicationsReducer} = reducers;
+
+  return {
+    usersReducer, 
+    publicationsReducer
+  };
+};
+
+const mapDispatchToProps = {
+  ...usersActions, 
+  ...publicationsActions
 }
 
-export default connect(mapStateToProps, usersActions)(withParams(Publications));
+export default connect(mapStateToProps, mapDispatchToProps)(withParams(Publications));
